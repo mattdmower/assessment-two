@@ -127,21 +127,21 @@ document.getElementById('factorial-calculator').addEventListener('submit', funct
 // the feedback text to say "The word must be at least 4 characters long." and
 // change the color of the text to red..
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('recommend-word');
     const input = document.getElementById('word');
     const feedback = document.querySelector('.form-feedback');
-  
-    form.addEventListener('submit', function(event) {
-      event.preventDefault(); // Prevent the form from actually submitting
-  
-      const inputValue = input.value.trim(); // Get the trimmed value of the input
-      if (inputValue.length >= 4) {
-        feedback.textContent = 'Thanks for your submission!';
-        feedback.style.color = 'green';
-      } else {
-        feedback.textContent = 'The word must be at least 4 characters long.';
-        feedback.style.color = 'red';
-      }
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent the form from actually submitting
+
+        const inputValue = input.value.trim(); // Get the trimmed value of the input
+        if (inputValue.length >= 4) {
+            feedback.textContent = 'Thanks for your submission!';
+            feedback.style.color = 'green';
+        } else {
+            feedback.textContent = 'The word must be at least 4 characters long.';
+            feedback.style.color = 'red';
+        }
     });
-  });
+});
