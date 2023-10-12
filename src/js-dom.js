@@ -12,9 +12,9 @@ const authButton = document.getElementById("auth");
 let isLoggedIn = false;
 function toggleLogin() {
     if (isLoggedIn) {
-        authButton.innerText = "Log In";
+        authButton.innerText = "Log in";
     } else {
-        authButton.innerText = "Log Out";
+        authButton.innerText = "Log out";
     }
     isLoggedIn = !isLoggedIn;
 }
@@ -27,7 +27,11 @@ authButton.addEventListener("click", toggleLogin);
 // A user should be able to enter what they want the alert to say in the
 // text box. Then, they can submit the form to trigger the alert.
 
-/// TODO: replace this with your code
+document.getElementById("send-alert").addEventListener("submit", function (event) {
+    event.preventDefault();
+    var message = document.getElementById("alert-message").value;
+    alert(message);
+});
 
 // Add an item
 //
@@ -44,7 +48,13 @@ authButton.addEventListener("click", toggleLogin);
 //     <li>Item</li>  <!-- This was added after double-clicking -->
 //   </ol>
 
-/// TODO: replace this with your code
+const button = document.getElementById("item-adder");
+const list = document.getElementById("list");
+button.addEventListener("click", function () {
+    const newItem = document.createElement("li");
+    newItem.textContent = "Item";
+    list.appendChild(newItem);
+});
 
 // Change colors
 //
@@ -55,7 +65,19 @@ authButton.addEventListener("click", toggleLogin);
 // Clicking on "Turn Stuff Red" should make text red and clicking on "Turn
 // Stuff Blue" should make text blue.
 
-/// TODO: replace this with your code
+const redButton = document.getElementById("red");
+const blueButton = document.getElementById("blue");
+const elementsToChangeColor = document.querySelectorAll(".changes-colors");
+redButton.addEventListener("click", function () {
+    for (const element of elementsToChangeColor) {
+        element.style.color = "red";
+    }
+});
+blueButton.addEventListener("click", function () {
+    for (const element of elementsToChangeColor) {
+        element.style.color = "blue";
+    }
+});
 
 // Calculate factorial
 //
@@ -72,7 +94,23 @@ authButton.addEventListener("click", toggleLogin);
 //   - calls your function that calculates a factorial
 //   - puts the result of the function inside the "result" span
 
-/// TODO: replace this with your code
+function calculateFactorial(n) {
+    if (n === 0 || n === 1) {
+        return 1;
+    } else {
+        return n * calculateFactorial(n - 1);
+    }
+}
+document.getElementById('factorial-calculator').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const inputValue = parseInt(document.getElementById('factorial-input').value);
+    if (inputValue >= 0) {
+        const factorial = calculateFactorial(inputValue);
+        document.getElementById('result').textContent = `Factorial: ${factorial}`;
+    } else {
+        document.getElementById('result').textContent = 'Please enter a positive number.';
+    }
+});
 
 // Validate a form
 //
@@ -89,4 +127,21 @@ authButton.addEventListener("click", toggleLogin);
 // the feedback text to say "The word must be at least 4 characters long." and
 // change the color of the text to red..
 
-/// TODO: replace this with your code
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('recommend-word');
+    const input = document.getElementById('word');
+    const feedback = document.querySelector('.form-feedback');
+  
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from actually submitting
+  
+      const inputValue = input.value.trim(); // Get the trimmed value of the input
+      if (inputValue.length >= 4) {
+        feedback.textContent = 'Thanks for your submission!';
+        feedback.style.color = 'green';
+      } else {
+        feedback.textContent = 'The word must be at least 4 characters long.';
+        feedback.style.color = 'red';
+      }
+    });
+  });
